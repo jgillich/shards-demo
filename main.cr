@@ -3,11 +3,11 @@ ch = Channel(Nil).new
   dir = Path[Dir.current, path]
   spawn do
     p = Process.new("shards", args: ["install", "--frozen"], chdir: dir.to_s, input: Process::Redirect::Inherit, output: Process::Redirect::Inherit, error: Process::Redirect::Inherit)
-    unless p.wait.normal_exit?
+    unless p.wait.success?
       exit 1
     end
     p = Process.new("crystal", args: ["run", "main.cr"], chdir: dir.to_s, input: Process::Redirect::Inherit, output: Process::Redirect::Inherit, error: Process::Redirect::Inherit)
-    unless p.wait.normal_exit?
+    unless p.wait.success?
       exit 1
     end
     ch.send(nil)
