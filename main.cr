@@ -7,6 +7,11 @@ ch = Channel(Nil).new
     unless p.wait.normal_exit?
       exit 1
     end
+    p = Process.new("crystal", args: ["run", "main.cr"], chdir: dir.to_s, input: Process::Redirect::Inherit, output: Process::Redirect::Inherit, error: Process::Redirect::Inherit)
+    unless p.wait.normal_exit?
+      exit 1
+    end
+
     ch.send(nil)
   end
 end.each { ch.receive }
