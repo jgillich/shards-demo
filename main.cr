@@ -1,5 +1,5 @@
 ch = Channel(Nil).new
-["a", "b", "c"].map do |path|
+["a", "b", "c", "d", "e", "f", "g"].map do |path|
   dir = Path[Dir.current, path]
   spawn do
     puts dir.to_s
