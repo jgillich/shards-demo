@@ -15,4 +15,5 @@ jobs:
           crystal: ${{ matrix.crystal }}
       - name: Checkout
         uses: actions/checkout@v3
+      - run: shards --version
       - run: crystal main.cr
